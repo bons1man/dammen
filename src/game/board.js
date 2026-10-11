@@ -1,6 +1,10 @@
-import { WHITE, BLACK, BOARD_SIZE } from '../lib/constants'
+// Bevat de stand van het spel: de lijst met stenen die nog op het bord staan.
+// Een steen is een object: { row, col, color }, color is WHITE of BLACK.
+// Dit bestand bewaart en verandert alleen data. Het weet niets van HTML
+// en niets van de regels.
 
-// Slaat de begin coordinaten van alle stenen op in een array
+import { BOARD_SIZE, WHITE, BLACK } from '../lib/constants'
+
 let _board = []
 
 export function initializeBoard() {
@@ -9,8 +13,8 @@ export function initializeBoard() {
 
     for (let r = 0; r < BOARD_SIZE; r++) {
         if (r === 3 || r === 4) {
-            if (color === "black") {
-                color = "white"
+            if (color === BLACK) {
+                color = WHITE
             }
             continue
         }
@@ -56,7 +60,7 @@ export function getBlackPieces() {
         return
     }
 
-    return _board.filter(piece => piece.color === "black")
+    return _board.filter(piece => piece.color === BLACK)
 }
 
 export function getWhitePieces() {
@@ -65,7 +69,7 @@ export function getWhitePieces() {
         return
     }
 
-    return _board.filter(piece => piece.color === "white")
+    return _board.filter(piece => piece.color === WHITE)
 }
 
 export function getBoard() {

@@ -108,7 +108,6 @@ body {
   font-size: 2.5rem;
 }
 
-/* Deze drie moeten onderaan staan, zodat ze de display-regels hierboven overschrijven */
 #menu[hidden] {
   display: none;
 }

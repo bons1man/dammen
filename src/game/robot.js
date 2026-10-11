@@ -1,6 +1,5 @@
-import { getValidBlackMoves } from "./rules";
 import { getPiece } from "./board";
-import { WHITE, BLACK, BOARD_SIZE } from '../lib/constants'
+import { WHITE } from '../lib/constants'
 
 export function pickRandomMove(moves) {
     if (moves.length < 1) return null

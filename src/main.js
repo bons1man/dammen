@@ -1,3 +1,9 @@
+// Verbindt alles. game/ en ui/ kennen elkaar niet
+// dit bestand geeft de gegevens door:
+// klik -> rules.js vragen of de zet mag -> data aanpassen in board.js
+// -> het bord opnieuw tekenen.
+// Hier zit ook het menu, de beurtwisseling, de robot en het einde van het spel.
+
 import './style.css'
 
 import { drawBoard, drawPieces, highlightMoves, clearMoveHighlights, highlightMoveablePieces, clearPieceHighlights } from './ui/render.js'

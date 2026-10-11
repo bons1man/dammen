@@ -1,3 +1,13 @@
+// Beantwoordt vragen over het bord: welke zetten kunnen er, mag een zet,
+// wie heeft gewonnen. Het verandert het bord nooit dat doet main.js.
+//
+// Een zet is een object: { piece, move: { row, col } }, waarbij move het
+// vakje is waar de steen op landt, bij slaan is het het vakje achter het slachtoffer.
+//
+// Stenen gaan één vakje schuin vooruit, nooit achteruit,
+// en slaan is verplicht.
+// Missende implementatie: de dam, meerdere keren slaan in één beurt, achteruit slaan.
+
 import { getBlackPieces, getWhitePieces, getPiece } from './board.js'
 import { WHITE, BLACK, BOARD_SIZE } from '../lib/constants'
 

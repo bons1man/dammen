@@ -1,4 +1,9 @@
-import { WHITE, BLACK } from '../lib/constants'
+// Tekent het bord, de stenen en de highlights. Het kent de regels niet
+// het tekent alleen wat het krijgt. Een klik op een vakje wordt doorgegeven
+// aan de functie die main.js aan drawBoard meegeeft.
+// Vakjes krijgen het id "<rij><kolom>", daarmee vindt
+// getCell ze terug. Dit werkt alleen omdat het een 8x8 bord is, bij 11x11 zou dit foutgaan
+import { BOARD_SIZE, WHITE, BLACK } from '../lib/constants'
 
 export function drawBoard(onClick) {
     const boardDimension = 8;
@@ -13,7 +18,6 @@ export function drawBoard(onClick) {
                 square.classList.add("dark")
             }
 
-            //square.textContent = `${row}, ${col}`
             square.addEventListener("click", function() {
                 onClick(row, col)
             })
@@ -66,9 +70,9 @@ export function highlightMoveablePieces(pieces) {
     for (const piece of pieces) {
         const cell = getCell(piece.row, piece.col)
         let pieceElement
-        if (piece.color === "black") {
+        if (piece.color === BLACK) {
             pieceElement = cell.querySelector('.black-piece')
-        } else if (piece.color === "white") {
+        } else if (piece.color === WHITE) {
             pieceElement = cell.querySelector('.white-piece')
         }
         pieceElement.style.outline = "4px solid #ff0000"
@@ -80,9 +84,9 @@ export function drawPieces(pieces) {
     for (const piece of pieces) {
         const cell = getCell(piece.row, piece.col)
         const pieceElement = document.createElement('div')
-        if (piece.color === "black") {
+        if (piece.color === BLACK) {
             pieceElement.classList.add("black-piece")
-        } else if (piece.color === "white") {
+        } else if (piece.color === WHITE) {
             pieceElement.classList.add("white-piece")
         }
         cell.append(pieceElement)
