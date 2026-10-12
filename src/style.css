@@ -18,16 +18,14 @@ body {
 
 .light {
   background-color: beige;
+  display: grid;
   place-items: center;
-  justify-content: center;
-  align-content: center;
 }
 
 .dark {
   background-color: #662c18;
+  display: grid;
   place-items: center;
-  justify-content: center;
-  align-content: center;
 }
 
 .black-piece {

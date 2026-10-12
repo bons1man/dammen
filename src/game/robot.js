@@ -1,5 +1,15 @@
+// Twee computertegenstanders, allebei spelen ze zwart. Ze krijgen de lijst
+// met toegestane zetten van rules.js.
+// - pickRandomMove: kiest een willekeurige zet.
+// - pickSmartMove: kiest liefst een zet waarna de steen niet meteen geslagen
+//   kan worden, anders een willekeurige zet.
+// De controle is voorzichtig: elke witte steen schuin voor het landingsvakje
+// telt als gevaar, ook als die niet echt kan slaan.
+
 import { getPiece } from "./board";
-import { WHITE } from '../lib/constants'
+import { isInPlayingfield } from "./rules";
+import { isCaptureMove } from "./rules";
+import { WHITE, BOARD_SIZE } from '../lib/constants'
 
 export function pickRandomMove(moves) {
     if (moves.length < 1) return null
@@ -8,20 +18,33 @@ export function pickRandomMove(moves) {
     return moves[randomIndex]
 }
 
-function getPotentialAttackers(move) {
-    const potentialAttackers = {
-        first: getPiece(move.move.row + 1, move.move.col + 1),
-        second: getPiece(move.move.row + 1, move.move.col - 1)
+function isEmptyAfterMove(position, move) {
+    const from = move.piece
+    const to = move.move
+
+    if (position.row === from.row && position.col === from.col) return true
+
+    if (isCaptureMove(from, to)) {
+        const victimRow = (from.row + to.row) / 2
+        const victimCol = (from.col + to.col) / 2
+        if (position.row === victimRow && position.col === victimCol) return true
     }
 
-    return potentialAttackers
+    return getPiece(position.row, position.col) == null
 }
 
 function canBeCaptured(move) {
-    const attackers = getPotentialAttackers(move)
-    const canFirstTake = attackers.first != null && attackers.first.color === WHITE
-    const canSecondTake = attackers.second != null && attackers.second.color === WHITE
-    return canFirstTake || canSecondTake
+    const to = move.move
+
+    for (const colDirection of [-1, 1]) {
+        const attacker = getPiece(to.row + 1, to.col + colDirection)
+        if (attacker == null || attacker.color !== WHITE) continue
+
+        const landing = { row: to.row - 1, col: to.col - colDirection }
+        if (isInPlayingfield(landing) && isEmptyAfterMove(landing, move)) return true
+    }
+
+    return false
 }
 
 function shuffleArray(array) {

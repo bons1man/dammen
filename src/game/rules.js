@@ -17,7 +17,7 @@ const MOVE_GETTERS = {
     black: getValidBlackMoves,
 }
 
-function isInPlayingfield({ row, col }) {
+export function isInPlayingfield({ row, col }) {
     return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE
 }
 
