@@ -7,6 +7,7 @@ Een dammenspel gemaakt in JavaScript, HTML en CSS met Vite.
 Je hebt [Node.js](https://nodejs.org) nodig.
 
 ```bash
+git clone https://github.com/bons1man/dammen
 npm install
 npm run dev
 ```

@@ -53,7 +53,6 @@ function hasCaptureMoves(moves) {
         (move) => isCaptureMove(move.piece, move.move))
 }
 
-// Checks if a piece can capture another piece on a position
 function canCupture(attacker, { col, row }) {
     const victim = getPiece(row, col)
     if (!isOppositeColor(attacker, victim)) return false

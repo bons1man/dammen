@@ -43,7 +43,7 @@ export function capturePiece(piece) {
 export function getPiece(row, col) {
     if (_board.length === 0) {
         console.warn(`Could not get piece at ${row}, ${col} because the board is empty`)
-        return
+        return null
     }
 
     for (const piece of _board) {
